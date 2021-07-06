@@ -1,0 +1,19 @@
+Steps-
+1. Downloaded the cs253_assign_2.zip file from mookit.
+2. Unzipped this file using the command : unzip cs253_assign_2.zip.
+3. Opened terminal at the location of the unzipped folder and downloaded the covid_Data.json file in this folder using the commands :
+wget https://api.covid19india.org/v4/data.json
+mv data.json covid_Data.json
+4. Created a shell script using the command : touch cs253_assign_2_190147.sh
+5. This script contains the commands to access the downloaded covid_Data json file, along with the required comments for explanation (see cs253_assign_2_190147.sh)
+I have deleted the state with code "TT" since it did not have any district, so I was not able to iterate on it using map(.). Hence, I deleted it using del(.TT)
+6. Redirected the required outputs of this script to processed_Covid_Data_190147.csv file.
+This file contains the <state>, <district>, <confirmed_cases>, <recovery_rate> fulfilling the conditions of task (27 entries).
+
+Refrences-
+1.https://stackoverflow.com/questions/9733338/shell-script-remove-first-and-last-quote-from-a-variable
+2.https://www.baeldung.com/linux/jq-command-json
+3.https://www.tutorialspoint.com/How-do-I-loop-through-a-JSON-file-with-multiple-keys-sub-keys-in-Python
+4.https://www.unix.com/shell-programming-and-scripting/132268-how-create-csv-file-using-shell-script.html
+5.https://stackoverflow.com/questions/12722095/how-do-i-use-floating-point-division-in-bash
+6.https://unix.stackexchange.com/questions/24721/how-to-compare-to-floating-point-number-in-a-shell-script
