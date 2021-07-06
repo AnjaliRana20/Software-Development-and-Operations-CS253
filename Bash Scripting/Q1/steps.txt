@@ -1,0 +1,66 @@
+1. Unzipped the 1611338434_cs253_assign_1.zip file using unzip command : unzip 1611338434_cs253_assign_1.zip. 
+
+2. Gave read, write and execute permission by the command: chmod 700 * 
+(NOTE : Used * instead of file/folder name to give permission to all of them together rather than individually).
+
+3. Created the directory 'Q1' using mkdir command. 
+
+4. Moved the q1-cs253.tar.gz file into the Q1 directory using mv command. 
+
+5. Then, Untar-ed the file q1-cs253.tar.gz using the command : tar -xvf q1-cs253.tar.gz
+ 
+6. Unzipped the file  q1-cs253.zip using the command : unzip q1-253.zip
+
+Two new files (5688bc90-ab36-4a02-b192-d2426572bc93.gz and deploy.gz) were created.
+
+8. Gave r,w,x permissions to them by the command: chmod 700 *
+
+9. Unzipped the files deploy.gz and 5688bc90-ab36-4a02-b192-d2426572bc93.gz using the commands: gunzip deploy.gz and gunzip 5688bc90-ab36-4a02-b192-d2426572bc93.gz 
+
+Now, I see the deploy file which has to be executed. 
+
+10. Ran the file 5688bc90-ab36-4a02-b192-d2426572bc93 using the command: ./5688bc90-ab36-4a02-b192-d2426572bc93 and got the output - 
+
+package_name -> 1XgtRYXY6lt52de
+Run the deploy script
+The deploy script needs 4 parameters
+
+11. Two new directories were formed in the last step. 
+a. eE9sJwVniCjzoP6
+b. XYBPlATIjqaMhys
+
+12.Gave r,w,x permissions to them using the command :  chmod 700 *
+
+14. Created 4 directories temp1, temp2, temp3, temp4 and passed them as arguments to the deploy (To get to know how arguments are to be passed to deploy). 
+
+Output-
+ls: cannot access 'temp1/*': No such file or directory
+ temp2 SUCCESS 
+ls: cannot access 'temp3/*': No such file or directory
+
+That means the first and third args are directories, 2nd arg is package since SUCCESS is written after it and last is EMP ID.
+
+15. So now, passed arguments to the deploy file using the command:
+ ./deploy eE9sJwVniCjzoP6 1XgtRYXY6lt52de XYBPlATIjqaMhys 190147
+
+Output:
+Sat Jan 30 21:10:28 IST 2021 1XgtRYXY6lt52de SUCCESS 
+[56e98bde-5c25-11eb-ae93-0242ac130002]
+[2okrO-aWfLSEx-0WMBtMg]
+
+which is of the same format as provided in the question.
+
+16. Now ran the upper line with the directories interchanged
+ ./deploy  XYBPlATIjqaMhys  1XgtRYXY6lt52de eE9sJwVniCjzoP6 190147
+
+Output - 
+5ahdx-JMfDG8L-NR8KNpi56e98bde-5c25-11eb-ae93-0242ac130002 iCzdcd0NKn2F9wW SUCCESS
+[Sat Jan 30 18:30:01 IST 2021]
+
+which doesn't match the correct format. 
+
+Hence step 15 was the correct way to pass the arguments to deploy. 
+
+17. Finally, ran the deploy again to redirect the final output message to the file submission-q1.txt. 
+Did that using ./deploy eE9sJwVniCjzoP6 1XgtRYXY6lt52de XYBPlATIjqaMhys 190147
+ > submission-q1.txt.

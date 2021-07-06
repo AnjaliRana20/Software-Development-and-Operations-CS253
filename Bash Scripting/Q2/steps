@@ -1,0 +1,51 @@
+1. Created a directory 'Q2' using the command : mkdir Q2 
+
+2. Then moved the q2-cs253.tar.gz file into the Q2 directory using the command : mv q2-cs253.tar.gz Q2
+
+3. Then, untar-ed the file q2-cs253.tar.gz using the command : tar -xvf q2-cs253.tar.gz
+Now I have 3 scripts - 10ZmoZg3pWmw9aA, DFwAU7iSoYorHy8 and dUkeKOpRSOxQfx2 and I give them r,w,x permissions by the command : chmod 700 *
+
+4. Now I made 3 input files - input_1, input_2, input_3
+
+5. Then wrote script.sh (see the script file script.sh for the syntax used to run the three scripts in background by taking the input_1,2 and 3 files as the input respectively) that would run the given 3 scripts in background.
+Then I gave execuatbel rights to the script using : chmod 700 script.sh
+
+6. Then ran the script in terminal using the command : ./script.sh
+ Output -
+The contents of the three input files started to get printed at time intervals.
+
+7. Ran the command : ps -ef
+
+Then noticed that three script files were running. Their PIDs were PPIDs of three processes named "timeout" which in turn had child processes named "bash". So each script process had a child process named "timeout" and each timeout process had a child named "bash".
+
+Now we will make a new script kill.sh which will kill all these 9 processes.
+
+8. So for this we need to get the PIDs of all the 9 processes. 
+
+For PID of script processes we use the command : 
+ScPID1=$(ps -ef | grep "script.sh" | sed -n 1p | awk '{print $2}')
+
+Here, script.sh selects the line which has 'script.sh' in it.
+sed -n 1p selects the first line which has "script.sh" in it.
+awk '{print $2}' selects the 2nd word of that line which is the PID.
+ 
+Similarly in
+TPID1=$(ps -ef | grep "timeout" | grep $ScPID1 |awk '{print $2}'),
+'timeout' and 'ScPID1' select the line containing these words and awk '{print $2} select the second word of that line which is PID of this process.
+
+So, in the similar way PIDs of all the proceses is stored in different variales (See kill.sh). 
+
+Lastly I write the command in kill.sh:
+kill -9 $ScPID1 $ScPID2 $ScPID3 $BASHPID1 $BASHPID2 $BASHPID3 $TPID1 $TPID2 $TPID3 
+-This will kill all the processes.
+
+9. Gave executable permissions to it using chmod 700 kill.sh
+
+10. Now I do the following steps to kill the process:
+
+- ./script.sh
+	Starts to print the contents of inputs files at time intervals in background and we can 	still write commands in terminal.
+- ./kill.sh
+	Stops the printing of contents immediately.
+
+
