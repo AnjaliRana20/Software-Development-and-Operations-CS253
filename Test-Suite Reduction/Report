@@ -1,0 +1,37 @@
+
+I have created generate.sh script which generates n test cases, where n is taken as argument. 
+I have created rduce.sh script which takes k as input and chooses at most k cases from n test cases such that the branch coverge is closest possible.
+
+Kindly se the scripts for the procedure used.
+ 
+# STEPS:
+
+1. Wrote a C program 'Program.c' with if-else branches on which generate and reduce script are to be tested. 
+I have also kept infeasible branches.
+
+2. Then I created a script 'generate.sh' which would take inputs program 'Program.c' and 'n' as arguments and generate 'n' random test cases using the $RANDOM command(see the script to see how I have used $RANDOM to increase the range). 
+This resulted in forming T.in file with n test cases in input_tests directory.
+
+3. Then, created script 'reduce.sh' which takes 'Program.c' 'T.in' and 'k' as input arguments and selects atmost k best test cases from 'T.in' and also maintains almost same branch coverage.
+
+4. I first compiled the c program 'Program.c' and executed the program on one of the inputs from 'T.in' to calculate no. of branches (see script to see how). 
+
+5.Then I created a for loop of n test cases from T.in and line by line gave inputs to the Program.c and created a gcov file for this test.
+From this file, I selected those lines which had "branch" in it and I chose 4th word in this line which said "1" if this test case had covered this particular branch.
+
+6.If the 4th word was 1, I redirected 1 to algo_put, otherwise 0.
+
+7.In this way, for each test case I got the branches it has covered in the form of a double array.
+
+8.Then I passed the inputs of algo_input to the algorithm. (SEE algo_reduction, comments say how the algorithm is working).
+
+9.Then I redirected the outputs to S.in.
+10.At last I have testing script for the tests of S.in on Program.c.
+In this I run the the lines of S.in one by one in Program.
+
+
+# References
+https://www.geeksforgeeks.org/generating-random-number-range-c/
+https://tecadmin.net/pass-command-line-arguments-in-shell-script/
+https://www.geeksforgeeks.org/2d-vector-in-cpp-with-user-defined-size/
+wc -l command - https://www.tecmint.com/wc-command-examples/
